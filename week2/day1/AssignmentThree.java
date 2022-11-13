@@ -1,0 +1,59 @@
+package week2.day1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class AssignmentThree {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup(); // Setup Driver
+
+		ChromeDriver driver = new ChromeDriver(); // Setup Driver
+		driver.get("http://leaftaps.com/opentaps/control/login"); // Launch URl
+		driver.findElement(By.id("username")).sendKeys("DemoSalesManager"); // Send Username
+		driver.findElement(By.id("password")).sendKeys("crmsfa"); // Sending Password
+		driver.findElement(By.className("decorativeSubmit")).click(); // Clicking Login
+		driver.findElement(By.linkText("CRM/SFA")).click(); // Clicking crmsfa link
+		driver.findElement(By.linkText("Leads")).click(); // Click on Leads
+		driver.findElement(By.linkText("Create Lead")).click(); // Click on Create lead
+		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("Encora"); // Providing Company name
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Boopathi"); // Providing Firstname
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Varma"); // Providing Lastname
+		driver.findElement(By.id("createLeadForm_firstNameLocal")).sendKeys("marshall"); // Providing Local name
+		driver.findElement(By.name("departmentName")).sendKeys("civil"); // Providing Department
+		driver.findElement(By.name("description")).sendKeys(
+				"This is to test my" + "automation skill and to know my level of understanding in the learnt concepts"); // Providing
+																															// Description
+		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("boopathimarshall@gmail.com"); // Providing
+																											// Email.
+
+		WebElement elemState = driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId")); // Drop down web
+																										// element
+
+		Select select = new Select(elemState); // Object for select
+		select.selectByVisibleText("New York"); // Selecting New york
+		driver.findElement(By.name("submitButton")).click(); // Click on Submit
+		String title = driver.getTitle();
+		System.out.println(title);
+
+		driver.findElement(By.linkText("Duplicate Lead")).click();
+
+		WebElement elemCompName = driver.findElement(By.id("createLeadForm_companyName"));
+		elemCompName.clear();
+		elemCompName.sendKeys("Cognizant");
+
+		WebElement elemFirstName = driver.findElement(By.id("createLeadForm_firstName"));
+		elemFirstName.clear();
+		elemFirstName.sendKeys("Varma");
+
+		driver.findElement(By.name("submitButton")).click();
+
+		String title1 = driver.getTitle();
+		System.out.println(title1); // Printing Title
+	}
+
+}
