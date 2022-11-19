@@ -7,34 +7,36 @@ public class ReverseEvenWords {
 		String test = "I am a software tester";
 		String[] split = test.split("\\s");
 
-		char [] cA;
+	
+	
 
 		for (int i = 0; i < split.length; i++) 
 		{
-			if(i%2==1) {
-				 cA = split[i].toCharArray();
-				for (int j = 0;j<cA.length;i++)
-				{
-					cA[j]=cA[(cA.length-1)-j];
-					System.out.print(cA[j]);
-					System.out.print(" ");
-				}
-				
-				
-				
-				
-			}else
+			char[] cA = split[i].toCharArray();
+			char[] bA=new char[split[i].length()];
+			char c;
+			
+			
+			if(i%2==1)
 			{
-				cA = split[i].toCharArray();
-				System.out.print(cA);
-				System.out.print(" 2nd");
 				
+				for(int j =0;j<=split[i].length()-1;j++)
+				{
+					
+					   c = cA[(split[i].length()-1)-j];
+					   bA[j]=c;
+				}
+				String string = String.valueOf(bA);
+				
+				split[i]= string;	
 			}
 			
-			//System.out.println(String.valueOf(cA));
+		}
+		for(String var :split)
+		{
+			System.out.println(var);
+		}
 			
 		}
 
 	}
-
-}
